@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
   styled,
@@ -116,36 +116,35 @@ const App = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  // const RefreshPage = () => {
-  //   const [countdown, setCountdown] = useState(60);
+  const RefreshPage = () => {
+    const [countdown, setCountdown] = useState(60);
 
-  //   useEffect(() => {
-  //     const refreshPage = () => {
-  //       window.location.reload();
-  //     };
+    useEffect(() => {
+      const refreshPage = () => {
+        window.location.reload();
+      };
 
-  //     const intervalId = setInterval(() => {
-  //       setCountdown((prevCountdown) => prevCountdown - 1);
-  //     }, 1000);
+      const intervalId = setInterval(() => {
+        setCountdown((prevCountdown) => prevCountdown - 1);
+      }, 1000);
 
-  //     const countdownTimeoutId = setTimeout(refreshPage, 60000);
+      const countdownTimeoutId = setTimeout(refreshPage, 60000);
 
-  //     return () => {
-  //       clearInterval(intervalId);
-  //       clearTimeout(countdownTimeoutId);
-  //     };
-  //   }, []);
+      return () => {
+        clearInterval(intervalId);
+        clearTimeout(countdownTimeoutId);
+      };
+    }, []);
 
-  //   const minutes = Math.floor(countdown / 60);
-  //   const seconds = countdown % 60;
+    const minutes = Math.floor(countdown / 60);
+    const seconds = countdown % 60;
 
-  //   return (
-  //     <div>
-  //       After {minutes}:{seconds < 10 ? `0${seconds}` : seconds} This page will
-  //       be refreshed.
-  //     </div>
-  //   );
-  // };
+    return (
+      <span>
+        {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+      </span>
+    );
+  };
   return (
     <>
       <Navbar position="static">
@@ -205,7 +204,7 @@ const App = () => {
               borderRadius: "5px",
             }}
           >
-            00:00
+            {RefreshPage()}
           </span>
           This page will be refreshed.
         </MainContainer>
