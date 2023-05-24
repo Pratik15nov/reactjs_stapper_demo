@@ -31,11 +31,11 @@ const schema = yup.object().shape({
 const theme = createTheme();
 const steps = ["Share Location", "Clock in", "Working On", "Clock Out"];
 const initialValuesOfLocation = {
-  option1: "Branch code",
-  option2: "Branch",
-  option3: "Brand",
-  option4: "Sales Type",
-  option5: "Product Type",
+  option1: "",
+  option2: "",
+  option3: "",
+  option4: "",
+  option5: "",
 };
 
 const Home = () => {
@@ -193,7 +193,6 @@ const Home = () => {
                   <FormControl
                     sx={{ m: 1, width: "100%" }}
                     size="small"
-                    disabled
                   >
                     <InputLabel id="demo-select-small-label">Branch</InputLabel>
                     <Select
